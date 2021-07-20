@@ -1,0 +1,236 @@
+/* Мінімальне скидування стилів */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+}
+
+/* Загальні */
+.container{
+    width: 90%;
+    margin: 10px auto 0;
+}
+.block{
+    min-height: 200px;
+    height: max-content;
+    width: 100%;
+    margin: 20px 0;
+    padding: 30px 40px;
+    border-radius: 6px;
+    background-color: #ddd;
+}
+/* загальні стилі всіх кнопок */
+.container input[type="button"]{
+    width: max-content;
+    padding: 10px 15px;
+    border-radius: 3px;
+    font-size: 17px;
+    color: #fff;
+}
+ul{
+    margin-left: 30px;
+    list-style-type: disc;
+}
+ul li{
+    margin-left: 30px;
+}
+
+/* --------------------------- */
+/* Блок з виведенням */
+.output-block{
+    overflow-y: scroll;
+    line-height: 30px;
+}
+
+
+/* ------------------------------ */
+/* Блок з кнопками вибору редактора */
+.edit-type{
+    padding: 10px 0;
+    text-align: center;
+}
+input.edit-inner{
+    margin-right: 20px;
+    background-color: orange;
+}
+input.edit-inner:hover{
+    background-color: rgb(255, 145, 0);
+    cursor: pointer;
+}
+input.edit-style{
+    background-color: royalblue;
+}
+input.edit-style:hover{
+    background-color: rgb(45, 71, 216);
+    cursor: pointer;
+}
+
+
+/* ---------------------------------- */
+/* Блок з вводом HTML-коду */
+.input-block, .add_element{
+    font-family: sans-serif;
+}
+.input-block .edit-area{
+    width: 100%;
+    height: 150px;
+    resize: none;
+}
+.input-block .btn-add, .input-block .btn-save{
+    margin-top: 5px;
+}
+.input-block .btn-add{
+    background-color: crimson;
+}
+.input-block .btn-save{
+    background-color: green;
+}
+.input-block .btn-add:hover{
+    background-color: rgb(196, 18, 53);
+    cursor: pointer;
+}
+.input-block .btn-save:hover{
+    background-color: rgb(6, 102, 6);
+    cursor: pointer;
+}
+
+
+/* ------------------------- */
+/* Блок стилізації */
+.style-block{
+    position: relative;
+}
+
+/* загальна стилізація секцій блоку */
+.field{
+    margin: 20px 0;
+}
+.field h3{
+    margin-bottom: 10px;
+}
+.field label{
+    margin-right: 20px;
+}
+.field span{
+    margin-left: 7px;
+}
+
+/* секція вибору шрифта */
+.field .font-family{
+    height: 40px;
+    width: 200px;
+    font-size: 15px;
+    padding: 0 10px;
+}
+
+/* секція з вибором кольорів */
+.form-color input{
+    background-color: grey;
+}
+.form-color input:hover{
+    background-color: rgb(100, 100, 100);
+    cursor: pointer;
+}
+.field .color-box{
+    position: absolute;
+    margin: auto;
+    top: 0px; right: 40px; bottom: 0; left: auto;
+    width: 152px;
+    height: 152px;
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid #000;
+}
+.color-box .color-item{
+    width: 50px;
+    height: 50px;
+    border: 1px solid #000;
+}
+
+
+/* -------------------------- */
+/* Вибір додаваного елемента */
+.chose-type{
+    margin: 25px 0px 25px 20px;
+}
+.elem-type{
+    margin-right: 20px;
+}
+.elem-type span{
+    margin-left: 10px;
+    font-size: 18px;
+}
+
+/* створення додаткови елементів */
+.add-element{
+    display: flex;
+    flex-direction: column;
+}
+.add-element label{
+    margin: 10px 0;
+    font-size: 17px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.add-element label span{
+    width: 230px;
+}
+
+/* створення списку */
+#countLi, #typeLi{
+    width: 90%;
+    height: 35px;
+    border: 1px solid silver;
+    border-radius: 3px;
+    padding-left: 20px;
+}
+.add-element .btn-create{
+    margin-top: 20px;
+    background-color: forestgreen;
+}
+
+/* створення таблиці */
+.create-table h3{
+    font-size: 19px;
+    margin: 25px 10px 20px;
+}
+.create-table input{
+    width: calc(100% - 230px);
+}
+.create-table input, .create-table select{
+    height: 35px;
+    padding-left: 15px;
+}
+.create-table input[type="button"]{
+    height: 40px;
+}
+/* Поле з стилізацією меж таблиці */
+.border-style{
+    display: flex;
+    justify-content: space-between;
+}
+.add-element .border-style label{
+    justify-content: flex-start;
+    width: 32%;
+}
+.border-style input, .border-style select{
+    width: 73%;
+}
+#bordWidth{
+    width: 66%;
+}
+.border-style label span{
+    width: max-content;
+    margin-right: 10px;
+}
+
+/* -------------------------- */
+/* Додаткові стилі */
+.hide{
+    display: none!important;
+}
+.show{
+    display: block!important;
+}

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 10</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="edit">
+            <div class="block output-block">
+                <h3>Це приклад заголовку, який ви можете змінювати.</h3>
+                <a href="#">Це приклад посилання, який ви можете змінювати.</a>
+                <p>Це приклад тексту, який ви можете змінювати.</p>
+                <p>Це приклад тексту, який ви можете змінювати.</p>
+            </div>
+            <div class="edit-type">
+                <input type="button" value="Редагувати вмістиме" class="edit-inner">
+                <input type="button" value="Налаштувати стилі" class="edit-style">
+            </div>
+            <div class="block input-block">
+                <div class="edit-block hide">
+                    <textarea class="edit-area"></textarea>
+                    <input type="button" value="Додати елемент" class="btn-add">
+                    <input type="button" value="Зберегти зміни" class="btn-save">
+                </div>
+                <div class="style-block hide">
+                    <form name="styles">
+                        <div class="form-size field">
+                            <h3>Розмір тексту</h3>
+                            <label for="fontSize1">
+                                <input type="radio" id="fontSize1" name="size" value="14px"><span>14px</span>
+                            </label>
+                            <label for="fontSize2">
+                                <input type="radio" id="fontSize2" name="size" value="16px" checked><span>16px</span>
+                            </label>
+                            <label for="fontSize3">
+                                <input type="radio" id="fontSize3" name="size" value="18px"><span>18px</span>
+                            </label>
+                            <label for="fontSize4">
+                                <input type="radio" id="fontSize4" name="size" value="20px"><span>20px</span>
+                            </label>
+                            <label for="fontSize5">
+                                <input type="radio" id="fontSize5" name="size" value="22px"><span>22px</span>
+                            </label>
+                        </div>
+                        <div class="form-family field">
+                            <h3>Тип шрифта</h3>
+                            <select name="fontFamily" class="font-family">
+                                <option value="">Оберіть колір</option>
+                                <option value="cursive">cursive</option>
+                                <option value="fantasy">fantasy</option>
+                                <option value="monospace">monospace</option>
+                                <option value="sans-serif">sans-serif</option>
+                            </select>
+                        </div>
+                        <div class="form-color field">
+                            <h3>Кольори</h3>
+                            <input type="button" name="textColor" value="Колір тексту" class="btn-text-color">
+                            <div class="tx-color color-box hide">
+                                <div class="color-item"></div>
+                                <div class="color-item"></div>
+                                <div class="color-item"></div>
+                                <div class="color-item"></div>
+                                <div class="color-item"></div>
+                                <div class="color-item"></div>
+                                <div class="color-item"></div>
+                                <div class="color-item"></div>
+                                <div class="color-item"></div>
+                            </div>
+                            <input type="button" name="backroundColor" value="Колір фону" class="btn-bg-color">
+                            <div class="bg-color color-box hide">
+                                <div class="color-item"></div>
+                                <div class="color-item"></div>
+                                <div class="color-item"></div>
+                                <div class="color-item"></div>
+                                <div class="color-item"></div>
+                                <div class="color-item"></div>
+                                <div class="color-item"></div>
+                                <div class="color-item"></div>
+                                <div class="color-item"></div>
+                            </div>
+                        </div>
+                        <div class="form-style field">
+                            <h3>Стиль тексту</h3>
+                            <label for="boldStyle">
+                                <input type="checkbox" name="fontWeight" id="fontWeight" value="bold"><span style="font-weight: 700;">Жирний стиль</span>
+                            </label>
+                            <label for="italicStyle">
+                                <input type="checkbox" name="italicStyle" id="italicStyle" value="italic"><span style="font-style: italic;">Курсивний
+                                    стиль</span>
+                            </label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="add_element hide">
+            <div class="block">
+                <h2>Оберіть елемент який хочете додати</h2>
+                <form name="addElements" class="chose-type">
+                    <label for="elTable" class="elem-type">
+                        <input type="radio" name="choose" id="elTable"><span>Таблиця</span>
+                    </label>
+                    <label for="elList" class="elem-type">
+                        <input type="radio" name="choose" id="elList"><span>Список</span>
+                    </label>
+                </form>
+                 <div class="create-table hide">
+                    <form name="addTable" class="add-element add-table">
+                        <label for="countTr">
+                            <span>Кількість рядків таблиці</span>
+                            <input type="text" name="countTr" id="countTr">
+                        </label>
+                        <label for="countTd">
+                            <span>Кількість стовпців таблиці</span>
+                            <input type="text" name="countTd" id="countTd">
+                        </label>
+                        <h3>Додайте стилі до таблиці</h3>
+                        <label for="widthTd">
+                            <span>Ширина стовпців таблиці</span>
+                             <input type="number" name="widthTd" id="widthTd">
+                        </label>
+                        <label for="heightTd">
+                            <span>Висота стовпців таблиці</span>
+                             <input type="number" name="heightTd" id="heightTd">
+                        </label>
+                        <div class="border-style">
+                            <label for="bordWidth">
+                                <span>Ширина меж</span>
+                                 <input type="number" name="bordWidth" id="bordWidth">
+                            </label>
+                            <label for="borderStyle">
+                                <span>Тип межі</span>
+                                 <select name="borderStyle" id="borderStyle">
+                                     <option value="solid">Суцільна лінія</option>
+                                     <option value="dotted">Крапочки</option>
+                                     <option value="double">Подвійна лінія</option>
+                                 </select>
+                            </label>
+                            <label for="borderColor">
+                                <span>Колір меж</span>
+                                <input type="text" name="borderColor" id="borederColor" placeholder="#000000, red, black">
+                            </label>
+                        </div>
+                        <input type="button" value="Додати таблицю" name="create" class="btn-create">
+                    </form>
+                </div>
+
+                 <div class="create-list hide">
+                    <form name="addList" class="add-element add-list">
+                        <label for="countLi">
+                            <span>Кількість елементів списку</span>
+                            <input type="text" name="count" id="countLi">
+                        </label>
+                        <label for="typeLi">
+                            <span>Тип маркування</span>
+                            <select name="type" id="typeLi">
+                                <option value="circle">Коло</option>
+                                <option value="disc">Круг</option>
+                                <option value="square">Квадрат</option>
+                                <option value="disclosure-closed">Трикутник</option>
+                            </select>
+                        </label>
+                        <input type="button" value="Додати список" name="create" class="btn-create">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
