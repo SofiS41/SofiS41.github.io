@@ -4,7 +4,7 @@ let date = new Date();
 
 // 1st block - date
 let dd = date.getDate();
-let mm = date.getMonth();
+let mm = date.getMonth()+1;
 let yy = date.getFullYear();
 
 if (dd < 10) dd = '0' + dd;
