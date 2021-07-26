@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 11</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="current_date block">
+            <h3 class="date">24.07.2021</h3>
+            <h1 class="time">23:54:37</h1>
+        </div>
+        <div class="stopwatch block">
+            <div class="exact-time">
+                <h2 class="ex-t-timer">00:00:00:00</h2>
+                <input type="button" id="ex-t-start" class="ex-t-btn" value="start">
+                <input type="button" id="ex-t-loop" class="ex-t-btn" value="loop">
+                <input type="button" id="ex-t-stop" class="ex-t-btn" value="stop">
+                <input type="button" id="ex-t-reset" class="ex-t-btn" value="reset">
+            </div>
+            <div class="stoped-time">
+            </div>
+        </div>
+        <div class="timer block">
+            <div class="minutes">
+                <h2 class="min-amount"></h2>
+                <p>minutes</p>
+                <div>
+                    <button type="button" class="sub-min">-</button>
+                    <button type="button" class="add-min">+</button>
+                </div>
+            </div>
+            <div class="run-timer">
+                <h2 class="run-time">00:00</h2>
+                <button type="button" class="start-timer">start</button>
+                <button type="button" class="stop-timer" disabled>stop</button>
+                <button type="button" class="reset-timer">reset</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
