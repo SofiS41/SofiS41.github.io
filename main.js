@@ -42,15 +42,22 @@ function timeStart(){
     let ms = dateTimer.getUTCMilliseconds();
     time.innerHTML = ('0'+hour).slice(-2) +':'+ ('0'+min).slice(-2) +':'+ ('0'+sec).slice(-2) +':'+ ('0'+ms).slice(-3,-1);
     }, 10);
+    document.getElementById('ex-t-loop').disabled = true;
+    document.getElementById('ex-t-reset').disabled = true;
 }
 function timeLoop() {
   let p = document.createElement('p');
   p.textContent = `${time.innerHTML}`;
   document.querySelector('.stoped-time').append(p);
+  if(document.querySelector('.stoped-time').children.length > 4){
+    document.querySelector('.stoped-time').style.overflowY = 'scroll';
+  }
 }
 function timePaused() {
   time.style.color = "red";
   clearInterval(tim);
+  document.getElementById('ex-t-loop').disabled = false;
+  document.getElementById('ex-t-reset').disabled = false;
 }
 function timeReset(){
   time.style.color = "rgb(3, 236, 236)";
@@ -58,6 +65,7 @@ function timeReset(){
   millisec = 0;
   time.innerHTML = "00:00:00:00";
   document.querySelector('.stoped-time').innerHTML = "";
+  document.querySelector('.stoped-time').style.overflowY = 'unset';
 }
 
 document.addEventListener('click', (e) => {
@@ -106,12 +114,15 @@ function timtim(){
       if(s<10) s = '0' + s;
       document.querySelector('.run-time').textContent = `${m}:${s}`;
     }, 1000);
-    document.querySelector('.stop-timer').disabled = false;
     document.querySelector('.start-timer').disabled = true;
+    document.querySelector('.stop-timer').disabled = false;
+    document.querySelector('.reset-timer').disabled = true;
   }
   function stop(){
     clearInterval(timer);
     document.querySelector('.start-timer').disabled = false;
+    document.querySelector('.stop-timer').disabled = true;
+    document.querySelector('.reset-timer').disabled = false;
   }
   function reset(){
     document.querySelector('.run-time').textContent = '00:00';
