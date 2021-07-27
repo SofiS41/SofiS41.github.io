@@ -116,7 +116,7 @@ function timtim(){
         stop();
       }
       document.querySelector('.run-time').textContent = `${m}:${s}`;
-    }, 100);
+    }, 1000);
     document.querySelector('.start-timer').disabled = true;
     document.querySelector('.stop-timer').disabled = false;
     document.querySelector('.reset-timer').disabled = true;
