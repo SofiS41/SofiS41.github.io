@@ -80,7 +80,7 @@ document.addEventListener('click', (e) => {
 // 3rd block timer
 let add = document.querySelector('.add-min');
 let sub = document.querySelector('.sub-min');
-let count = 10;
+let count = 1;
 document.querySelector('.min-amount').textContent = count;
 
 add.addEventListener('click', ()=>{
@@ -116,7 +116,7 @@ function timtim(){
         stop();
       }
       document.querySelector('.run-time').textContent = `${m}:${s}`;
-    }, 1000);
+    }, 100);
     document.querySelector('.start-timer').disabled = true;
     document.querySelector('.stop-timer').disabled = false;
     document.querySelector('.reset-timer').disabled = true;
