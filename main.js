@@ -112,6 +112,9 @@ function timtim(){
       if(m<10) m = `0${Number(m)}`;
       s--;
       if(s<10) s = '0' + s;
+      if(Number(m)==0 && Number(s)==0){
+        stop();
+      }
       document.querySelector('.run-time').textContent = `${m}:${s}`;
     }, 1000);
     document.querySelector('.start-timer').disabled = true;
