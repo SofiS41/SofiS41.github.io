@@ -1,138 +1,58 @@
 'use strict'
 
-let date = new Date();
-
-// 1st block - date
-let dd = date.getDate();
-let mm = date.getMonth()+1;
-let yy = date.getFullYear();
-
-if (dd < 10) dd = '0' + dd;
-if (mm < 10) mm = '0' + mm;
-document.querySelector('.date').textContent = `${dd}.${mm}.${yy}`
-
-setInterval(function(){
-    let d = new Date();
-    let h = d.getHours();
-    let m = d.getMinutes();
-    let s = d.getSeconds();
-
-    if (s < 10) s = `0${s}`;
-    if (m < 10) m = `0${m}`;
-    if (h < 10) h = `0${h}`;
-    
-    document.querySelector('.time').innerHTML = `${h}:${m}:${s}`;
-});
-
-
-// 2nd block - stopwatch
-const time = document.querySelector('.ex-t-timer');
-let millisec = 0;
-let tim;
-function timeStart(){
-    time.style.color = "rgb(3, 236, 236)";
-    clearInterval(tim);
-
-    tim = setInterval(() => {
-    millisec += 10;
-    let dateTimer = new Date(millisec);
-    let hour = dateTimer.getUTCHours();
-    let min = dateTimer.getUTCMinutes();
-    let sec = dateTimer.getUTCSeconds();
-    let ms = dateTimer.getUTCMilliseconds();
-    time.innerHTML = ('0'+hour).slice(-2) +':'+ ('0'+min).slice(-2) +':'+ ('0'+sec).slice(-2) +':'+ ('0'+ms).slice(-3,-1);
-    }, 10);
-    document.getElementById('ex-t-loop').disabled = true;
-    document.getElementById('ex-t-reset').disabled = true;
-}
-function timeLoop() {
-  let p = document.createElement('p');
-  p.textContent = `${time.innerHTML}`;
-  document.querySelector('.stoped-time').append(p);
-  if(document.querySelector('.stoped-time').children.length > 4){
-    document.querySelector('.stoped-time').style.overflowY = 'scroll';
-  }
-}
-function timePaused() {
-  time.style.color = "red";
-  clearInterval(tim);
-  document.getElementById('ex-t-loop').disabled = false;
-  document.getElementById('ex-t-reset').disabled = false;
-}
-function timeReset(){
-  time.style.color = "rgb(3, 236, 236)";
-  setInterval(tim);
-  millisec = 0;
-  time.innerHTML = "00:00:00:00";
-  document.querySelector('.stoped-time').innerHTML = "";
-  document.querySelector('.stoped-time').style.overflowY = 'unset';
+function printRessult(button, taskNum, variable){
+    button.addEventListener('click', () =>{
+        console.log(`Завдання ${taskNum}.   Результат:`, variable);
+        button.disabled = true;
+    });
 }
 
-document.addEventListener('click', (e) => {
-  const btn = e.target;
-  if(btn.id === 'ex-t-start') timeStart();
-  if(btn.id === 'ex-t-loop') timeLoop();
-  if(btn.id === 'ex-t-stop') timePaused();
-  if(btn.id === 'ex-t-reset') timeReset();
-});
+// Task 1
+let sum = 0;
+let arr1 = [5, 6, 7, 8, 9];
 
+arr1.forEach(i =>  sum += i);
+printRessult(document.querySelector('.task-1 .run-code'), 1, sum);
 
-// 3rd block timer
-let add = document.querySelector('.add-min');
-let sub = document.querySelector('.sub-min');
-let count = 1;
-document.querySelector('.min-amount').textContent = count;
+// Task 2
+let derArr1 = arr1.map(element => element *= element);
+printRessult(document.querySelector('.task-2 .run-code'), 2, derArr1);
 
-add.addEventListener('click', ()=>{
-    count++;
-    document.querySelector('.min-amount').textContent = count;
-    timtim();
-});
-sub.addEventListener('click', ()=>{
-  count--;
-  document.querySelector('.min-amount').textContent = count;
-  timtim();
-});
+// Task 3
+let arr2 = [
+    {name: 'Ivan', country: 'Ukraine'},
+    {name: 'Petro', country: 'Ukraine'},
+    {name: 'Miguel', country: 'Cuba'}
+];
 
+let check1 = arr2.every(el => el.country === 'Ukraine');
+let a;
+check1 ? a = 'Всі ключі містять "Ukraine"' : a = 'Не всі ключі містять "Ukraine"';
+printRessult(document.querySelector('.task-3 .run-code'), 3, a);
 
-function timtim(){
-  let timerCount = date.setMinutes(count, 0, 0);
-  let minutes = Math.floor((timerCount % (1000 * 60 * 60 ))/(1000 * 60));
-  let seconds = Math.floor((timerCount % (1000 * 60))/1000);
-  let timer;
+// Task 4
+let check2 = arr2.some(el => el.country === 'Cuba');
+let b;
+check2 ? b = 'Містять "Cuba"' : b = 'Не містить "Cuba"';
+printRessult(document.querySelector('.task-4 .run-code'), 4, b);
 
-  function start(){
-    let m = minutes;
-    let s = seconds;
-    timer = setInterval(()=>{
-      if(s == 0){
-        s = 60;
-        m--;
-      }
-      if(m<10) m = `0${Number(m)}`;
-      s--;
-      if(s<10) s = '0' + s;
-      if(Number(m)==0 && Number(s)==0){
-        stop();
-      }
-      document.querySelector('.run-time').textContent = `${m}:${s}`;
-    }, 1000);
-    document.querySelector('.start-timer').disabled = true;
-    document.querySelector('.stop-timer').disabled = false;
-    document.querySelector('.reset-timer').disabled = true;
-  }
-  function stop(){
-    clearInterval(timer);
-    document.querySelector('.start-timer').disabled = false;
-    document.querySelector('.stop-timer').disabled = true;
-    document.querySelector('.reset-timer').disabled = false;
-  }
-  function reset(){
-    document.querySelector('.run-time').textContent = '00:00';
-  }
+// Task 5
+let arr3 = [1, 'string', [3, 4], 5, [6, 7]];
+let filt = arr3.filter(el => Array.isArray(el) ? el : false);
+printRessult(document.querySelector('.task-5 .run-code'), 5, filt);
 
-  document.querySelector('.start-timer').addEventListener('click', start);
-  document.querySelector('.stop-timer').addEventListener('click', stop);
-  document.querySelector('.reset-timer').addEventListener('click', reset);
-}
-timtim();
+// Task 6
+let arr4 = [1, 2, 5, 0, 4, 5, 6];
+let sum1 = arr4.slice(0, arr4.indexOf(0)).reduce((prevel, nextel) => prevel + nextel);
+printRessult(document.querySelector('.task-6 .run-code'), 6, sum1);
+
+// Task 7
+// let arr7 = [1, 6, 1, 2, 4, 5, 6, 9, 4];
+let res = arr4.reduce((s,v,i)=>({suma: s.suma+v, count: s.suma+v >= 10 ? s.count: i+2}), {suma:0, count:0}).count;
+printRessult(document.querySelector('.task-7 .run-code'), 7, res);
+
+// Task 8
+let arr5 = [1, -2, 3, 0, 4, -5, 6, -11];
+let positive = arr5.filter(el => el>0 ? el : false);
+let derArr2 = positive.map(el => el*el);
+printRessult(document.querySelector('.task-8 .run-code'), 8, derArr2);
