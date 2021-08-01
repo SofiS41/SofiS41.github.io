@@ -54,5 +54,5 @@ printRessult(document.querySelector('.task-7 .run-code'), 7, res);
 // Task 8
 let arr5 = [1, -2, 3, 0, 4, -5, 6, -11];
 let positive = arr5.filter(el => el>0 ? el : false);
-let derArr2 = positive.map(el => el*el);
+let derArr2 = positive.map(el => Math.sqrt(el));
 printRessult(document.querySelector('.task-8 .run-code'), 8, derArr2);
