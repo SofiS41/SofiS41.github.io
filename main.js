@@ -1,58 +1,73 @@
 'use strict'
+// Треба провалідувати поля у цій формі на вхідні дані при кліку на кнопку як на відео validateRegisterForm. 
+// — Ім’я та прізвище: може бути слово англійською з великої або маленької букви і не більше 20. Цифр і інші символи не допускаються.
+// — Емейл: обов'язково @. Усі букви повинні бути англійською. Загальні вимоги наступні(будь-яка кількість букв, цифр, тире і крапок@будьяка кількість букв.( net.ua, org.ua, gmail.com. і т.д.)).
+// — Пароль: Від 8 до 15 символів можуть бути букви та цифри.
+// — Чекбокс: якщо всі поля правильно заповнені, то при кліку на чекбокс кнопка Sign Up розблоковується
+// — Sign Up: при кліку на дану кнопку відкривається модальне вікно з повідомленням про успішну реєстрацію
+// — Start exploring: при кліку на дану кнопку закривається модальне вікно, а також всі поля форми зачищуються
 
-function printRessult(button, taskNum, variable){
-    button.addEventListener('click', () =>{
-        console.log(`Завдання ${taskNum}.   Результат:`, variable);
-        button.disabled = true;
-    });
+function checkValue(pattern, element){
+    let variable = pattern.test(element.value);
+    if (variable === true){
+        element.parentElement.classList.add('valid');
+        element.classList.remove('shadow');
+        element.parentElement.children[1].classList.add('hide');
+        element.style.borderColor = 'forestgreen';
+        if(document.querySelector('.alert-message')){
+            document.querySelector('.alert-message').remove();
+        }
+    }
+    else{
+        element.parentElement.classList.remove('valid');
+        element.style.borderColor = '#ddd';
+        element.parentElement.children[1].classList.remove('hide');
+        element.classList.add('shadow');
+        if(document.querySelector('.alert-message') == null){
+            let message = document.createElement('div');
+            message.textContent = `Please provide a valid ${element.placeholder}`;
+            message.classList.add('alert-message');
+            element.parentElement.append(message);
+        }
+    }
+    return variable;
 }
 
-// Task 1
-let sum = 0;
-let arr1 = [5, 6, 7, 8, 9];
+let form = document.forms.signUpForm;
 
-arr1.forEach(i =>  sum += i);
-printRessult(document.querySelector('.task-1 .run-code'), 1, sum);
+let nameg, surname, email, password;
+let regName = /^[a-zA-Z]{3,20}$/;
+let regUsEmail = /^\w{1,}@[a-z]{2,}\.[a-z]{2,}$/;
+let regPass = /^\w{8,15}$/;
 
-// Task 2
-let derArr1 = arr1.map(element => element *= element);
-printRessult(document.querySelector('.task-2 .run-code'), 2, derArr1);
+form.addEventListener('input', (e)=>{
+    if(e.target.id === 'fname'){
+        nameg = checkValue(regName, e.target);
+    }
+    else if(e.target.id === 'sname'){
+        surname = checkValue(regName, e.target);
+    }
+    else if(e.target.id === 'usemail'){
+        email = checkValue(regUsEmail, e.target);
+    }
+    else if(e.target.id === 'uspassword'){
+        password = checkValue(regPass, e.target);
+    }
+     if(e.target.id === 'prpol'){
+         if (e.target.checked && nameg===true && surname===true && email===true && password===true){
+                document.querySelector('.sign-button').disabled = false;
+            }
+        }
+});
+document.querySelector('.sign-button').addEventListener('click', ()=>{
+    document.querySelector('.welcome-overlay').classList.remove('hide');
+});
+document.querySelector('.start-exploring').addEventListener('click', ()=>{
+    document.querySelector('.welcome-overlay').classList.add('hide');
+    form.reset();
+    for(let i=0; i<form.elements.length-2; i++){
+        form.elements[i].parentElement.classList.remove('valid');
+        form.elements[i].style.borderColor = '#ddd';
+    }
+});
 
-// Task 3
-let arr2 = [
-    {name: 'Ivan', country: 'Ukraine'},
-    {name: 'Petro', country: 'Ukraine'},
-    {name: 'Miguel', country: 'Cuba'}
-];
-
-let check1 = arr2.every(el => el.country === 'Ukraine');
-let a;
-check1 ? a = 'Всі ключі містять "Ukraine"' : a = 'Не всі ключі містять "Ukraine"';
-printRessult(document.querySelector('.task-3 .run-code'), 3, a);
-
-// Task 4
-let check2 = arr2.some(el => el.country === 'Cuba');
-let b;
-check2 ? b = 'Містять "Cuba"' : b = 'Не містить "Cuba"';
-printRessult(document.querySelector('.task-4 .run-code'), 4, b);
-
-// Task 5
-let arr3 = [1, 'string', [3, 4], 5, [6, 7]];
-let filt = arr3.filter(el => Array.isArray(el) ? el : false);
-printRessult(document.querySelector('.task-5 .run-code'), 5, filt);
-
-// Task 6
-let arr4 = [1, 2, 5, 0, 4, 5, 6];
-let sum1 = arr4.slice(0, arr4.indexOf(0)).reduce((prevel, nextel) => prevel + nextel);
-printRessult(document.querySelector('.task-6 .run-code'), 6, sum1);
-
-// Task 7
-// let arr7 = [1, 6, 1, 2, 4, 5, 6, 9, 4];
-let res = arr4.reduce((s,v,i)=>({suma: s.suma+v, count: s.suma+v >= 10 ? s.count: i+2}), {suma:0, count:0}).count;
-printRessult(document.querySelector('.task-7 .run-code'), 7, res);
-
-// Task 8
-let arr5 = [1, -2, 3, 0, 4, -5, 6, -11];
-let positive = arr5.filter(el => el>0 ? el : false);
-let derArr2 = positive.map(el => Math.sqrt(el));
-printRessult(document.querySelector('.task-8 .run-code'), 8, derArr2);
