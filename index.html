@@ -4,108 +4,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Урок 12</title>
+    <title>Урок 13</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <h2 class="list-heading">Список завдань</h2>
-    <div class="task-list">
-        <div class="task task-1">
-            <div class="left-side">
-                <h3 class="task-heading"><span class="task-number">Завдання 1</span>Метод forEach</h3>
-                <p class="task-description">Заданий масив з числами. Знайдіть суму цих чисел.
-                    <br>
-                    let arr = [5, 6, 7, 8, 9];
-                    <br>
-                    Результат вивести в консоль.</p>
-            </div>
-            <button class="run-code">Виконати завдання</button>
+    <form class="sign-up" name="signUpForm">
+        <h2 class="form-heading">Please sign up</h2>
+        <div class="wraper">
+            <input type="text" name="firstName" id="fname" class="f-name form-field invalid" placeholder="First name">
+            <div class="hide cross">✖</div>
         </div>
-        <div class="task task-2">
-            <div class="left-side">
-                <h3 class="task-heading"><span class="task-number">Завдання 2</span>Метод Map</h3>
-                <p class="task-description">Заданий масив з числами. Створіть новий масив, що складається з квадратів цих чисел.
-                    <br>
-                    let arr = [5, 6, 7, 8, 9];
-                    <br>
-                    Результат вивести в консоль.</p>
-            </div>
-            <button class="run-code">Виконати завдання</button>
+        <div class="wraper">
+            <input type="text" name="secondName" id="sname" class="s-name form-field" placeholder="Second name">
+            <div class="hide cross">✖</div>
         </div>
-        <div class="task task-3">
-            <div class="left-side">
-                <h3 class="task-heading"><span class="task-number">Завдання 3</span>Метод Every</h3>
-                <p class="task-description">Заданий масив об’єктів. Перевірте, чи всі ключі country мають значення 'Ukraine'.
-                    <br>
-                    let arr = [{name: 'Ivan', country: 'Ukraine'},
-                    {name: 'Petro', country: 'Ukraine'},
-                    {name: 'Miguel', country: 'Cuba'}
-                    ]
-                    <br>
-                    Результат вивести в консоль.</p>
-            </div>
-            <button class="run-code">Виконати завдання</button>
+        <div class="wraper">
+            <input type="text" name="userEmail" id="usemail" class="us-email form-field" placeholder="Email address">
+            <div class="hide cross">✖</div>
         </div>
-        <div class="task task-4">
-            <div class="left-side">
-                <h3 class="task-heading"><span class="task-number">Завдання 4</span>Метод Some</h3>
-                <p class="task-description">Заданий масив об’єктів. Перевірте, чи хоч один ключ country має значення 'Cuba'.
-                    <br>
-                    let arr = [{name: 'Ivan', country: 'Ukraine'},
-                    {name: 'Petro', country: 'Ukraine'},
-                    {name: 'Miguel', country: 'Cuba'}
-                    ]
-                    <br>
-                    Результат вивести в консоль.</p>
-            </div>
-            <button class="run-code">Виконати завдання</button>
+        <div class="wraper">
+            <input type="password" name="userPassword" id="uspassword" class="us-password form-field" placeholder="Password">
+            <div class="hide cross">✖</div>
         </div>
-        <div class="task task-5">
-            <div class="left-side">
-                <h3 class="task-heading"><span class="task-number">Завдання 5</span>Метод Filter</h3>
-                <p class="task-description">Заданий масив значень, в ньому можуть бути звичайні елементи і підмасиви. Залиште в ньому тільки підмасиви.
-                    <br>
-                    let arr = [1, 'string', [3, 4], 5, [6, 7]];
-                    <br>
-                    Результат вивести в консоль.</p>
+        <label for="prpol">
+            <input type="checkbox" name="privacyPolicy" id="prpol">
+            I agree with Privacy Policy
+        </label>
+        <button type="button" disabled class="sign-button">Sign Up</button>
+    </form>
+
+    <div class="welcome-overlay hide">
+        <div class="welcome-block">
+            <p class="green-head"><span class="tick">✓</span></p>
+            <div class="welcome-content">
+                <h3>Great!</h3>
+                <p>Your account has been created successfully.</p>
+                <button class="start-exploring">Start Exploring →</button>
             </div>
-            <button class="run-code">Виконати завдання</button>
-        </div>
-        <div class="task task-6">
-            <div class="left-side">
-                <h3 class="task-heading"><span class="task-number">Завдання 6</span>Метод Reduce</h3>
-                <p class="task-description">Заданий масив з числами. Знайдіть суму перших N елементів до першого нуля. 
-                    <br>
-                    Приклад: [1, 2, 3, 0, 4, 5, 6] - підсумовуємо перші 3 елементи, так як далі стоїть елемент з числом 0.
-                    <br>
-                    let arr = [1, 2, 5, 0, 4, 5, 6];
-                    <br>
-                    Результат вивести в консоль.</p>
-            </div>
-            <button class="run-code">Виконати завдання</button>
-        </div>
-        <div class="task task-7">
-            <div class="left-side">
-                <h3 class="task-heading"><span class="task-number">Завдання 7</span>Метод Reduce</h3>
-                <p class="task-description">Заданий масив з числами. Дізнайтеся скільки елементів з початку масиву треба скласти, щоб в сумі вийшло більше 10-ти.
-                    <br>
-                    let arr = [1, 2, 5, 0, 4, 5, 6];
-                    <br>
-                    Результат вивести в консоль.</p>
-            </div>
-            <button class="run-code">Виконати завдання</button>
-        </div>
-        <div class="task task-8">
-            <div class="left-side">
-                <h3 class="task-heading"><span class="task-number">Завдання 8</span>Будь яким методом</h3>
-                <p class="task-description">Заданий масив з числами. Залиште в ньому тільки позитивні числа. Потім вийміть квадратний корінь і цих чисел.
-                    <br>
-                    let arr = [1, -2, 3, 0, 4, -5, 6, -11];
-                    <br>
-                    Результат вивести в консоль.</p>
-            </div>
-            <button class="run-code">Виконати завдання</button>
         </div>
     </div>
 
