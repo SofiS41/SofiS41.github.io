@@ -54,9 +54,10 @@ form.addEventListener('input', (e) => {
     else if (e.target.id === 'uspassword') {
         password = checkValue(regPass, e.target);
     }
-    if (che.checked === true && nameg === true && surname === true && email === true && password === true) {
+    if (che.checked && nameg && surname && email && password) {
         document.querySelector('.sign-button').disabled = false;
     }
+    else document.querySelector('.sign-button').disabled = true;
 });
 
 console.log(nameg, surname);
