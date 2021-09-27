@@ -9,165 +9,130 @@
 }
 body{
     background-color: #eee;
+    color: #333;
+}
+
+
+.two-main-blocks{
+    width: 100%;
+    margin-top: 60px;
+    display: flex;
+}
+.block{
+    margin: 0 auto;
 }
 
 /* form */
-.sign-up{
-    width: 450px;
-    margin: 60px auto 0;
+.add-user{
+    width: 500px;
+    margin: 0px auto 0;
 }
 .form-heading{
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     text-align: center;
-    font-weight: 500;
-    font-size: 30px;
+    font-weight: 600;
+    font-size: 25px;
+}
+.add-user label{
+    font-size: 18px;
+    margin-left: 10px;
 }
 
 /* form fields */
-.wraper{
-    position: relative;
-    margin-bottom: 30px;
-}
 .form-field{
     display: block;
-    height: 55px;
+    height: 45px;
     width: 100%;
-    padding: 2px 15px;
+    padding: 0 15px;
+    margin: 5px 0 10px 0;
     background-color: #fff;
     border: 2px solid #ddd;
     border-radius: 5px;
-    font-size: 18px;
-    color: #444;
+    font-size: 16px;
 }
-.cross{
-    position: absolute;
-    margin: auto;
-    top:50%;
-    right: 10px;
-    transform:translate(-50%, -15px);
-    z-index: 10;
-    font-size: 22px;
-    color: red;
+input::placeholder{
+    color: #aaa;
 }
 
-.sign-button{
+.sign-button, .edit-button{
     height: 45px;
     width: 100%;
-    margin-top: 20px;
+    margin-top: 10px;
     background-color: royalblue;
     border-radius: 6px;
     font-size: 18px;
     color: #fff;
     cursor: pointer;
+    transition: all 0.6s;
 }
-.sign-button:disabled{
-    background-color: rgb(111, 139, 224);
+.edit-button{
+    background: none;
+    border: 1px solid forestgreen;
+    color: forestgreen;
+}
+.edit-button:disabled{
+    border-color: #9ec39e;
+    color: #9ec39e;
     cursor: no-drop;
 }
-
-
-/* welcome form */
-.welcome-overlay{
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 15;
+.edit-button:disabled:hover{
+    background: none;
+    color: #9ec39e;
 }
-.welcome-block{
-    width: 600px;
-    background-color: #fff;
-    border-radius: 10px;
-}
-
-p.green-head{
-    padding: 40px 0;
-    background-color: rgb(80, 201, 132);
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
+.edit-button:hover{
+    background-color: forestgreen;
     color: #fff;
-    text-align: center;
 }
-p.green-head .tick{
-    display: inline-block;
-    width: 100px;
-    height: 100px;
-    border: 5px solid #fff;
-    border-radius: 50%;
-    text-align: center;
-    font-weight: 800;
-    font-size: 60px;
-    line-height: 90px;
+.sign-button:disabled{
+    background-color: rgb(137, 162, 236);
+    cursor: no-drop;
+}
+.sign-button:disabled:hover{
+    background-color: rgb(137, 162, 236);
+}
+.sign-button:hover{
+    background-color: #414141;
 }
 
-.welcome-content{
-    padding: 40px 50px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+
+/* table */
+.users-table{
+    width: 600px;
+    margin: 0 auto;
+    border-collapse: collapse;
 }
-.welcome-content h3{
+.users-table .row{
+    height: 60px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
     text-align: center;
-    font-weight: 400;
-    font-size: 34px;
-    color: #414141;
 }
-.welcome-content p{
-    margin: 20px 0;
-    text-align: center;
-    font-size: 18px;
+.row td{
     color: #555;
 }
-button.start-exploring{
-    display: block;
-    margin: 30px auto 0;
-    padding: 10px 25px;
-    border-radius: 20px;
-    background-color: #ffb800;
-    font-size: 20px;
+span.table-btn{
+    padding: 10px 15px;
+    border-radius: 5px;
     color: #fff;
-    transition-duration: 0.6s;
 }
-button.start-exploring:hover{
-    background-color: #414141;
+.table-btn.btn-edit{
+    background-color: #ffb700;
+}
+.table-btn.btn-delete{
+    background-color: #df092d;
+}
+.table-btn.btn-edit:hover, .table-btn.btn-delete:hover{
     cursor: pointer;
+}
+.table-btn.btn-edit:hover{
+    background-color: #ff9900;
+}
+.table-btn.btn-delete:hover{
+    background-color: #b80312;
 }
 
 
 /* additional classes */
-.shadow{
-    box-shadow: 0 0 3px 1px rgba(17, 96, 199, 0.7);
-}
-
-.valid::after{
-    position: absolute;
-    content: '✓';
-    margin: auto;
-    top:50%;
-    right: 10px;
-    transform:translate(-50%, -15px);
-    font-weight: 900;
-    font-size: 22px;
-    color: forestgreen;
-    z-index: 10;
-}
-
-.alert-message{
-    position: absolute;
-    width: max-content;
-    padding: 5px 10px;
-    bottom: -28px;
-    left: 0;
-    border-radius: 5px;
-    background-color: rgb(226, 15, 43);
-    font-size: 15px;
-    color: #fff;
-}
-
 .hide{
     display: none;
 }
