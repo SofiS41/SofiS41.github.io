@@ -1,76 +1,111 @@
 'use strict'
-// Треба провалідувати поля у цій формі на вхідні дані при кліку на кнопку як на відео validateRegisterForm. 
-// — Ім’я та прізвище: може бути слово англійською з великої або маленької букви і не більше 20. Цифр і інші символи не допускаються.
-// — Емейл: обов'язково @. Усі букви повинні бути англійською. Загальні вимоги наступні(будь-яка кількість букв, цифр, тире і крапок@будьяка кількість букв.( net.ua, org.ua, gmail.com. і т.д.)).
-// — Пароль: Від 8 до 15 символів можуть бути букви та цифри.
-// — Чекбокс: якщо всі поля правильно заповнені, то при кліку на чекбокс кнопка Sign Up розблоковується
-// — Sign Up: при кліку на дану кнопку відкривається модальне вікно з повідомленням про успішну реєстрацію
-// — Start exploring: при кліку на дану кнопку закривається модальне вікно, а також всі поля форми зачищуються
 
-function checkValue(pattern, element) {
-    let variable = pattern.test(element.value);
-    if (variable === true) {
-        element.parentElement.classList.add('valid');
-        element.classList.remove('shadow');
-        element.parentElement.children[1].classList.add('hide');
-        element.style.borderColor = 'forestgreen';
-        if (document.querySelector('.alert-message')) {
-            document.querySelector('.alert-message').remove();
-        }
+let regLogin = /^[A-Za-z]{4,16}$/;
+let regPass = /^\w{4,16}$/;
+let regMail = /^\S{1,}@[a-z]{2,}\.[a-z]{2,}$/;
+
+var index=0, editUserInfo=[], tabRow;
+let user=[];
+let addForm = document.forms.addUser;
+let tab = document.querySelector('.users-table');
+let tBody = document.querySelector('tbody');
+
+function saveEditUser(){
+    let login = addForm.userLogin.value,
+    password = addForm.userPassword.value,
+    email = addForm.userEmail.value;
+    let arrayInfo = [login, password, email];
+    for(let i=0; i<3; i++){
+        tabRow.children[i+1].textContent = arrayInfo[i];
     }
-    else {
-        element.parentElement.classList.remove('valid');
-        element.style.borderColor = '#ddd';
-        element.parentElement.children[1].classList.remove('hide');
-        element.classList.add('shadow');
-        if (document.querySelector('.alert-message') == null) {
-            let message = document.createElement('div');
-            message.textContent = `Please provide a valid ${element.placeholder}`;
-            message.classList.add('alert-message');
-            element.parentElement.append(message);
-        }
+    addForm.reset();
+    addForm.editUser.classList.add('hide');
+    addForm.signButton.classList.remove('hide');
+    addForm.signButton.disabled = true;
+}
+function editUser(e){
+    addForm.editUser.disabled = true;
+    addForm.editUser.classList.remove('hide');
+    addForm.signButton.classList.add('hide');
+    e.target.closest('tr').children.length;
+    for (let i=0; i < 3; i++) {
+        addForm[i].value =  e.target.closest('tr').children[i+1].textContent;
     }
-    return variable;
+    tabRow = e.target.closest('tr');
 }
 
-let form = document.forms.signUpForm;
-let che = document.querySelector('#prpol');
+function deleteUser(e){
+    let rowI = e.target.closest('tr').rowIndex;
+    let tabLen = tBody.children.length;
+    if(rowI < tabLen){
+        while(rowI+1 <= tabLen){
+            let tabTr = tBody.children[rowI]
+            tabTr.id = `user_${rowI}`;
+            tabTr.children[0].textContent = rowI;
+            rowI++;
+        }
+    }
+    index = tabLen-1;
+    e.target.closest('tr').remove();
+}
 
-let nameg, surname, email, password;
-let regName = /^[a-zA-Z]{3,20}$/;
-let regUsEmail = /^\S{1,}@[a-z]{2,}\.[a-z]{2,}$/;
-let regPass = /^\w{8,15}$/;
+function render(indexl, user){
+    tab.children[1].innerHTML += `
+        <tr id="user_${indexl}" class="row">
+            <td class="index">${indexl}</td>
+            <td>${user[0]}</td>
+            <td>${user[1]}</td>
+            <td>${user[2]}</td>
+            <td><span class="table-btn btn-edit" data-btnName="edit">Змінити</span></td>
+            <td><span class="table-btn btn-delete" data-btnName="delete">Видалити</span></td>
+        </tr>
+    `;
+}
 
-form.addEventListener('input', (e) => {
-    if (e.target.id === 'fname') {
-        nameg = checkValue(regName, e.target);
+function addUser(){
+    let i=0, login, password, email;
+    let User;
+    login = addForm.userLogin.value;
+    password = addForm.userPassword.value;
+    email = addForm.userEmail.value;
+    if(login && password && email){
+        User = {
+            login: login,
+            password: password,
+            email: email
+        };
     }
-    else if (e.target.id === 'sname') {
-        surname = checkValue(regName, e.target);
+    for (const key in User) {
+        user[i] = User[key];
+        i++;
     }
-    else if (e.target.id === 'usemail') {
-        email = checkValue(regUsEmail, e.target);
-    }
-    else if (e.target.id === 'uspassword') {
-        password = checkValue(regPass, e.target);
-    }
-    if (che.checked && nameg && surname && email && password) {
-        document.querySelector('.sign-button').disabled = false;
-    }
-    else document.querySelector('.sign-button').disabled = true;
-});
+    addForm.reset();
+    index++;
+    render(index, user);
+    addForm.signButton.disabled = true; 
+}
 
-console.log(nameg, surname);
-document.querySelector('.sign-button').addEventListener('click', () => {
-    document.querySelector('.welcome-overlay').classList.remove('hide');
-});
 
-document.querySelector('.start-exploring').addEventListener('click', () => {
-    document.querySelector('.welcome-overlay').classList.add('hide');
-    form.reset();
-    document.querySelector('.sign-button').disabled = true;
-    for (let i = 0; i < form.elements.length - 2; i++) {
-        form.elements[i].parentElement.classList.remove('valid');
-        form.elements[i].style.borderColor = '#ddd';
+addForm.addEventListener('input', (e)=>{
+    let login = addForm.userLogin.value,
+    password = addForm.userPassword.value,
+    email = addForm.userEmail.value;
+
+    // button sign
+    if(regLogin.test(login) && regPass.test(password) && regMail.test(email)){
+        addForm.signButton.disabled = false;
+        addForm.signButton.addEventListener('click', addUser);
     }
+    else addForm.signButton.disabled = true;
+    
+    // button edit
+    if(regLogin.test(login) && regPass.test(password) && regMail.test(email)){
+        addForm.editUser.disabled = false;
+        addForm.editUser.addEventListener('click', saveEditUser);
+    }
+    else addForm.editUser.disabled = true;
+})
+document.querySelector('.users-table').addEventListener('click', (e)=>{
+    if (e.target.dataset.btnname == 'delete') deleteUser(e);
+    else if (e.target.dataset.btnname == 'edit') editUser(e);
 });
