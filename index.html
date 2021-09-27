@@ -4,47 +4,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Урок 13</title>
+    <title>Урок 14</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <form class="sign-up" name="signUpForm">
-        <h2 class="form-heading">Please sign up</h2>
-        <div class="wraper">
-            <input type="text" name="firstName" id="fname" class="f-name form-field invalid" placeholder="First name">
-            <div class="hide cross">✖</div>
+    <div class="two-main-blocks">
+        <div class="block left-side">
+            <form class="add-user" name="addUser">
+                <h2 class="form-heading">Будь ласка, заповніть форму!</h2>
+                <label for="us-login"> Логін
+                    <input type="text" name="userLogin" id="us-login" class="form-field invalid" placeholder="Введіть логін">
+                </label>
+                <label for="us-password">Пароль
+                    <input type="password" name="userPassword" id="us-password" class="dd form-field" placeholder="Введіть пароль">
+                </label>
+                <label for="us-email">Електрона адреса
+                    <input type="email" name="userEmail" id="us-email" class="kk form-field" placeholder="Введіть діючу елекрону адресу">
+                </label>
+                <button type="button"  class="sign-button" name="signButton" disabled>Додати користувача</button>
+                <button type="button"  class="edit-button hide" name="editUser" disabled>Зберегти зміни</button>
+            </form>
         </div>
-        <div class="wraper">
-            <input type="text" name="secondName" id="sname" class="s-name form-field" placeholder="Second name">
-            <div class="hide cross">✖</div>
-        </div>
-        <div class="wraper">
-            <input type="text" name="userEmail" id="usemail" class="us-email form-field" placeholder="Email address">
-            <div class="hide cross">✖</div>
-        </div>
-        <div class="wraper">
-            <input type="password" name="userPassword" id="uspassword" class="us-password form-field" placeholder="Password">
-            <div class="hide cross">✖</div>
-        </div>
-        <label for="prpol">
-            <input type="checkbox" name="privacyPolicy" id="prpol">
-            I agree with Privacy Policy
-        </label>
-        <button type="button" disabled class="sign-button">Sign Up</button>
-    </form>
-
-    <div class="welcome-overlay hide">
-        <div class="welcome-block">
-            <p class="green-head"><span class="tick">✓</span></p>
-            <div class="welcome-content">
-                <h3>Great!</h3>
-                <p>Your account has been created successfully.</p>
-                <button class="start-exploring">Start Exploring →</button>
-            </div>
+        <div class="block right-side">
+            <table class="users-table">
+                <thead>
+                    <tr class="row">
+                        <th class="index">№</th>
+                        <th class="login">Логін</th>
+                        <th class="password">Пароль</th>
+                        <th class="email">E-mail</th>
+                        <th class="edit">Змінити</th>
+                        <th class="delete">Видалити</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
         </div>
     </div>
 
     <script src="main.js"></script>
 </body>
+
 </html>
