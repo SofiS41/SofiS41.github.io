@@ -136,3 +136,9 @@ span.table-btn{
 .hide{
     display: none;
 }
+.valid{
+    border-color: forestgreen;
+}
+.invalid{
+    border-color: red;
+}
