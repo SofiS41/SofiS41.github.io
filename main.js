@@ -10,6 +10,7 @@ let addForm = document.forms.addUser;
 let tab = document.querySelector('.users-table');
 let tBody = document.querySelector('tbody');
 
+// edit user
 function saveEditUser(){
     let login = addForm.userLogin.value,
     password = addForm.userPassword.value,
@@ -22,7 +23,11 @@ function saveEditUser(){
     addForm.editUser.classList.add('hide');
     addForm.signButton.classList.remove('hide');
     addForm.signButton.disabled = true;
+    for (let i = 0; i < document.querySelectorAll('.add-user input').length; i++) {
+        document.querySelectorAll('.add-user input')[i].classList.remove('valid');  
+    }
 }
+
 function editUser(e){
     addForm.editUser.disabled = true;
     addForm.editUser.classList.remove('hide');
@@ -34,6 +39,7 @@ function editUser(e){
     tabRow = e.target.closest('tr');
 }
 
+// delet user
 function deleteUser(e){
     let rowI = e.target.closest('tr').rowIndex;
     let tabLen = tBody.children.length;
@@ -49,6 +55,7 @@ function deleteUser(e){
     e.target.closest('tr').remove();
 }
 
+// add user
 function render(indexl, user){
     tab.children[1].innerHTML += `
         <tr id="user_${indexl}" class="row">
@@ -82,15 +89,37 @@ function addUser(){
     addForm.reset();
     index++;
     render(index, user);
-    addForm.signButton.disabled = true; 
+    addForm.signButton.disabled = true;
+    for (let i = 0; i < document.querySelectorAll('.add-user input').length; i++) {
+        document.querySelectorAll('.add-user input')[i].classList.remove('valid');  
+    }
 }
 
+// validation colors
+function validEffect(element, formEl, regExp){
+    if(element == formEl){
+        if(regExp){
+            formEl.classList.add('valid')
+            formEl.classList.remove('invalid');
+        } 
+        else{
+            formEl.classList.remove('valid')
+            formEl.classList.add('invalid');
+        }
+    }
+}
 
+// main function
 addForm.addEventListener('input', (e)=>{
     let login = addForm.userLogin.value,
     password = addForm.userPassword.value,
     email = addForm.userEmail.value;
 
+    // valid color
+    validEffect(e.target, addForm.userLogin, regLogin.test(login));
+    validEffect(e.target, addForm.userPassword, regPass.test(password));
+    validEffect(e.target, addForm.userEmail, regMail.test(email));
+ 
     // button sign
     if(regLogin.test(login) && regPass.test(password) && regMail.test(email)){
         addForm.signButton.disabled = false;
